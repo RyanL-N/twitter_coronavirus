@@ -14,10 +14,10 @@ This project analyzes geotagged tweets from 2020 to track the spread and public 
    ![coronavirus.lang.png](./coronavirus.lang.png)
 
 2. **Top Countries Using #coronavirus**
-   ![coronavirus.png](./coronavirus.country.png)
+   ![coronavirus.png](./coronavirus.png)
 
 3. **Top Languages Using #코로나바이러스**
-   ![코로나바이러스.png](./코로나바이러스.lang.png)
+   ![코로나바이러스.png](./코로나바이러스.png)
 
 4. **Hashtag Trends Over Time**
    ![hashtag_trends.png](./hashtag_trends.png)
