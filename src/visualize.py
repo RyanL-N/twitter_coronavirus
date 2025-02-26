@@ -12,35 +12,33 @@ args = parser.parse_args()
 import os
 import json
 import matplotlib.pyplot as plt
-from collections import Counter, defaultdict
 
 # open the input path
 with open(args.input_path) as f:
     counts = json.load(f)
 
-# normalize the counts by the total values if --percent is used
+# normalize the counts by the total values
 if args.percent:
     for k in counts[args.key]:
         counts[args.key][k] /= counts['_all'][k]
 
-# sort the counts
+# sort and prepare data
 items = sorted(counts[args.key].items(), key=lambda item: (item[1], item[0]), reverse=True)
+keys = [k for k, v in items[:10]]
+values = [v for k, v in items[:10]]
 
-# print the counts
-for k, v in items:
-    print(k, ':', v)
-
-# Prepare data for plotting (Top 10)
-labels, values = zip(*items[:10])
-
-# Plotting
+# plotting
 plt.figure(figsize=(10, 6))
-plt.barh(labels, values, color='skyblue')
+plt.barh(keys, values, color='skyblue')
 plt.xlabel('Number of Tweets')
 plt.title(f"Top 10 for {args.key}")
 plt.tight_layout()
 
-# Save plot as PNG
-output_filename = f"{args.key.strip('#')}.png"
+# Detect if input is lang or country
+file_type = 'lang' if 'lang' in args.input_path else 'country'
+
+# Set output filename with suffix
+output_filename = f"{args.key[1:]}.{file_type}.png"
 plt.savefig(output_filename)
 print(f"Plot saved as {output_filename}")
+
